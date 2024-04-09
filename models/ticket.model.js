@@ -8,10 +8,6 @@ const ticketSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true,
   },
-  organizerId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-  },
   eventId: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -22,4 +18,4 @@ const ticketSchema = new Schema({
     enum: ["ordinary", "premium", "vip"],
   },
 });
-export const ticket = mongoose.model("ticket", ticketSchema);
+export const Ticket = mongoose.model("Ticket", ticketSchema);
