@@ -1,4 +1,4 @@
-import Ticket from "../models/ticket.model.js";
+import {Ticket} from "../models/ticket.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
