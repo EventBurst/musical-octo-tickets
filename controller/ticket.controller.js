@@ -47,3 +47,4 @@ const createTicket = asyncHandler(async (req, res) => {
       .json(new ApiResponse(201, ticket, "Ticket created"));
     });
 
+export { getAllTickets, getTicketsByAttendeeId, createTicket };
