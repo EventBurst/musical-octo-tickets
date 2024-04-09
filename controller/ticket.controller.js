@@ -14,3 +14,14 @@ const getAllTickets = asyncHandler(async (_, res) => {
 });
 
 
+// get tickets by attendeid
+const getTicketsByAttendeeId = asyncHandler(async (req, res) => {
+  const { attendeeId } = req.body;
+  if (!attendeeId) throw new ApiError(400, "AttendeeId is required");
+  const tickets = await Ticket.find({ attendeeId });
+  if (!tickets) throw new ApiError(404, "Tickets not found");
+  return res
+    .status(200)
+    .json(new ApiResponse(200, tickets, "Tickets found"));
+});
+
