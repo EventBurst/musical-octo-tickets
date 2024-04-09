@@ -25,3 +25,25 @@ const getTicketsByAttendeeId = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, tickets, "Tickets found"));
 });
 
+// create a ticket
+const createTicket = asyncHandler(async (req, res) => {
+    const { ticketPrice, attendeeId, organizerId, eventId, accessType } = req.body;
+    if (!ticketPrice || !attendeeId || !organizerId || !eventId || !accessType) {
+      throw new ApiError(400, "All fields are required");
+    }
+    // check if the ticket is already created
+    const ticketExists = await Ticket.findOne({ attendeeId, eventId});
+    if (ticketExists) throw new ApiError(400, "Ticket already created");
+    const ticket = new Ticket({
+      ticketPrice,
+      attendeeId,
+      eventId,
+      accessType,
+    });
+    await ticket.save();
+    if(!ticket) throw new ApiError(400, "Ticket not created");
+    return res
+      .status(201)
+      .json(new ApiResponse(201, ticket, "Ticket created"));
+    });
+
