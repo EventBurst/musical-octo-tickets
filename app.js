@@ -18,7 +18,7 @@ app.use(express.static("public"));
 app.use(cookieParser());
 app.use(cors());
 //Server Working
-app.get("/", (_, res) => {
+app.get("/", (req, res) => {
   res.send("HLO");
 });
 
