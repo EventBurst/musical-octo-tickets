@@ -5,3 +5,33 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:8002
+
+components:
+  schemas:
+    Ticket:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: The unique identifier of the ticket.
+        ticketPrice:
+          type: number
+          description: The price of the ticket.
+        attendeeId:
+          type: string
+          description: The ID of the attendee who bought the ticket.
+        eventId:
+          type: string
+          description: The ID of the event for which the ticket was bought.
+        accessType:
+          type: string
+          description: The type of access provided by the ticket.
+          enum:
+            - ordinary
+            - premium
+            - vip
+      required:
+        - ticketPrice
+        - attendeeId
+        - eventId
+        - accessType
