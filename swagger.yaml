@@ -11,6 +11,8 @@ paths:
     get:
       summary: Get all tickets
       description: Retrieve a list of all tickets.
+      tags:
+        - Ticket
       responses:
         "200":
           description: A list of all tickets
@@ -19,6 +21,8 @@ paths:
     get:
       summary: Get tickets by attendee ID
       description: Retrieve tickets associated with a specific attendee.
+      tags:
+        - Ticket
       parameters:
         - in: query
           name: attendeeId
@@ -34,6 +38,8 @@ paths:
     post:
       summary: Buy a ticket
       description: Purchase a ticket for an event.
+      tags:
+        - Ticket  
       requestBody:
         required: true
         content:
