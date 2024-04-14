@@ -6,6 +6,63 @@ info:
 servers:
   - url: http://localhost:8002
 
+paths:
+  /api/shiny-barnacle/ticket/get-all:
+    get:
+      summary: Get all tickets
+      description: Retrieve a list of all tickets.
+      responses:
+        "200":
+          description: A list of all tickets
+
+  /api/shiny-barnacle/ticket/get-by-attendee-id:
+    get:
+      summary: Get tickets by attendee ID
+      description: Retrieve tickets associated with a specific attendee.
+      parameters:
+        - in: query
+          name: attendeeId
+          required: true
+          schema:
+            type: string
+          description: ID of the attendee to get tickets for
+      responses:
+        "200":
+          description: A list of tickets associated with the specified attendee
+
+  /api/shiny-barnacle/ticket/buy:
+    post:
+      summary: Buy a ticket
+      description: Purchase a ticket for an event.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticketPrice:
+                  type: number
+                  description: The price of the ticket.
+                attendeeId:
+                  type: string
+                  description: The ID of the attendee buying the ticket.
+                eventId:
+                  type: string
+                  description: The ID of the event for which the ticket is being purchased.
+                accessType:
+                  type: string
+                  description: The type of access provided by the ticket.
+                  enum:
+                    - ordinary
+                    - premium
+                    - vip
+      responses:
+        "200":
+          description: Ticket purchased successfully
+        "400":
+          description: Bad request - Missing or invalid parameters
+
 components:
   schemas:
     Ticket:
