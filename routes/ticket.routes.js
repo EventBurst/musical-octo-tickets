@@ -9,7 +9,7 @@ const router = Router();
 
 // get all tickets
 router.get("/get-all", getAllTickets);
-router.get("/get-by-attendee-id", getTicketsByAttendeeId);
+router.get("/get-by-attendee-id/:attendeeId", getTicketsByAttendeeId);
 router.post("/buy", createTicket);
 
 export default router;
